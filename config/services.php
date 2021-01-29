@@ -30,4 +30,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'telegram' => [
+        'bot-birthdays' => [
+            'token' => env('TELEGRAM_BIRTHDAY_BOT_TOKEN'),
+            'chat' => env('TELEGRAM_BIRTHDAY_BOT_CHAT_ID'),
+        ],
+    ],
+
 ];
