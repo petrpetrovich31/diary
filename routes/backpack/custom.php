@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Backpack\CRUD\BackpackServiceProvider as Crud;
 
 // --------------------------
 // Custom Backpack Routes
@@ -16,4 +17,5 @@ Route::group([
     ),
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
+    Route::crud('birthdays', 'BirthdaysCrudController');
 }); // this should be the absolute last line of this file
