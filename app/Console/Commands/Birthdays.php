@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Birthday;
+use App\Models\BirthdayNotification;
 use Illuminate\Console\Command;
 use App\Services\Telegram;
 
@@ -29,11 +30,17 @@ class Birthdays extends Command
      */
     public function handle()
     {
-        $birthdays = Birthday::where('date', now()->format('Y-m-d'))->get();
+        $birthdays = Birthday::where('date', now()->format('Y-m-d'))->orWhere('date', now()->addDay()->format('Y-m-d'))->orderBy('date')->get();
         $telegram = new Telegram(config('services.telegram.bot-birthdays.token'), config('services.telegram.bot-birthdays.chat'));
+        $messagePatternNow = "Сегодня день рождения у *{text}*!\nМожно было бы и поздравить его!";
+        $messagePatternAfter = "Завтра день рождения у *{text}*!\nНе забудь завтра поздравить его!";
 
         foreach ($birthdays as $birthday) {
-            $telegram->sendMessage($birthday->title);
+            $notification = new BirthdayNotification();
+            $notification->birthday_id = $birthday->id;
+            $notification->result = $telegram->sendMessage(preg_replace('/{text}/', $birthday->title, now()->format('Y-m-d') === $birthday->date ? $messagePatternNow : $messagePatternAfter));
+            $notification->save();
         }
+
     }
 }

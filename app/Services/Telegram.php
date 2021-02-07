@@ -24,10 +24,10 @@ class Telegram
 
     /**
      * @param string $message
-     * @return int|mixed
+     * @return bool
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function sendMessage(string $message)
+    public function sendMessage(string $message): bool
     {
         $url = "https://api.telegram.org/bot{$this->botToken}/sendMessage";
         $params = [
@@ -38,6 +38,6 @@ class Telegram
 
         $response = curl($url, 'POST', $params);
 
-        return json_decode($response->ok ?? '', true) ?? 0;
+        return $response->ok;
     }
 }
