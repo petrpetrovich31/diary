@@ -30,7 +30,15 @@ class Birthdays extends Command
      */
     public function handle()
     {
-        $birthdays = Birthday::where('date', now()->format('Y-m-d'))->orWhere('date', now()->addDay()->format('Y-m-d'))->orderBy('date')->get();
+        $birthdays = Birthday::where(function ($query) {
+                $query->whereDay('date', now()->day)
+                    ->whereMonth('date', now()->month);
+            })
+            ->orWhere(function ($query) {
+                $query->whereDay('date', now()->subDay()->day)
+                    ->whereMonth('date', now()->subDay()->month);
+            })
+            ->get();
         $telegram = new Telegram(config('services.telegram.bot-birthdays.token'), config('services.telegram.bot-birthdays.chat'));
         $messagePatternNow = "Сегодня день рождения у *{text}*!\nМожно было бы и поздравить его!";
         $messagePatternAfter = "Завтра день рождения у *{text}*!\nНе забудь завтра поздравить его!";
@@ -38,7 +46,7 @@ class Birthdays extends Command
         foreach ($birthdays as $birthday) {
             $notification = new BirthdayNotification();
             $notification->birthday_id = $birthday->id;
-            $notification->result = $telegram->sendMessage(preg_replace('/{text}/', $birthday->title, now()->format('Y-m-d') === $birthday->date ? $messagePatternNow : $messagePatternAfter));
+            $notification->result = $telegram->sendMessage(preg_replace('/{text}/', $birthday->title, now()->format('m-d') == preg_replace('/^[0-9]{4}\-/', '', $birthday->date) ? $messagePatternNow : $messagePatternAfter));
             $notification->save();
         }
 
