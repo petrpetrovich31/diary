@@ -4,9 +4,13 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Birthday
+ * @property string title
+ * @property string date
+ * @method HasMany notification()
  * @package App\Models
  */
 class Birthday extends Model
@@ -16,12 +20,14 @@ class Birthday extends Model
     protected $table = 'birthdays';
     protected $fillable = ['title', 'date'];
 
-    /**
-     * Get the notifications for birthday.
+    public const TYPE = 'birthday';
+
+    /** Get the notifications for birthday.
+     * @return HasMany
      */
-    public function notifications()
+    public function notifications(): HasMany
     {
-        return $this->hasMany(BirthdayNotification::class);
+        return $this->hasMany(Notification::class, 'event_id', 'id');
     }
 
 }

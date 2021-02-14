@@ -4,7 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Console\Commands\Birthdays;
+use App\Console\Commands\BirthdaysCommand;
+use App\Console\Commands\DiaryCommand;
 
 class Kernel extends ConsoleKernel
 {
@@ -14,7 +15,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Birthdays::class
+        BirthdaysCommand::class,
+        DiaryCommand::class,
     ];
 
     /**
@@ -27,6 +29,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('birthdays:send')
             ->dailyAt('10:00');
+        $schedule->command('diary:send')
+            ->dailyAt('10:30');
     }
 
     /**

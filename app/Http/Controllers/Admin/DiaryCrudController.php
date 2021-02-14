@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use App\Models\Diary;
+use Carbon\Carbon;
 
-class BirthdaysCrudController extends CrudController
+class DiaryCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
@@ -12,11 +14,16 @@ class BirthdaysCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
 
+    private $months = [];
+
     public function setup()
     {
-        $this->crud->setModel("App\Models\Birthday");
-        $this->crud->setRoute("admin/birthdays");
-        $this->crud->setEntityNameStrings('День рождения', 'Дни рождения');
+        $this->months[0] = '-';
+        for($i = 1; $i <=12; $i++) $this->months[$i] = now()->setMonth($i)->getTranslatedMonthName();
+
+        $this->crud->setModel(Diary::class);
+        $this->crud->setRoute("admin/diary");
+        $this->crud->setEntityNameStrings('Дата', 'Даты');
         $this->setFilters();
     }
 
@@ -27,14 +34,25 @@ class BirthdaysCrudController extends CrudController
             'label'   => 'Заголовок',
         ]);
         $this->crud->addColumn([
-            'name'    => 'date',
-            'label'   => 'Дата',
+            'name'    => 'day',
+            'label'   => 'День',
+        ]);
+        $this->crud->addColumn([
+            'name'    => 'month',
+            'label'   => 'Месяц',
+            'type'    => 'select_from_array',
+            'options' => $this->months,
+        ]);
+        $this->crud->addColumn([
+            'name'    => 'year',
+            'label'   => 'Год',
         ]);
     }
 
     public function setupCreateOperation()
     {
-        //$this->crud->setValidation(TagCrudRequest::class);
+        $days = [];
+        for($i = 1; $i <= 31; $i++) $days[$i] = $i;
 
         $this->crud->addField([
             'name' => 'title',
@@ -42,9 +60,23 @@ class BirthdaysCrudController extends CrudController
             'label' => "Описание"
         ]);
         $this->crud->addField([
-            'name' => 'date',
-            'type' => 'date',
-            'label' => "Дата рождения"
+            'name' => 'day',
+            'type' => 'select_from_array',
+            'options' => $days,
+            'allows_null' => false,
+            'label' => "День"
+        ]);
+        $this->crud->addField([
+            'name' => 'month',
+            'type' => 'select_from_array',
+            'options' => $this->months,
+            'allows_null' => false,
+            'label' => "Месяц"
+        ]);
+        $this->crud->addField([
+            'name' => 'year',
+            'type' => 'text',
+            'label' => "Год"
         ]);
     }
 

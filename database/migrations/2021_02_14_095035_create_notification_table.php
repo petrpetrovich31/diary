@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreaeBirthdaysNotificationsTable extends Migration
+class CreateNotificationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreaeBirthdaysNotificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('birthday_notifications', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->integer('birthday_id');
+            $table->string('type')->index('type')->nullable(false);
+            $table->integer('event_id')->index('event_id')->nullable(false);
+            $table->boolean('result')->index('result');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreaeBirthdaysNotificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('birthday_notifications');
+        Schema::dropIfExists('notifications');
     }
 }

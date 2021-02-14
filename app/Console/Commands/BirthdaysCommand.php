@@ -3,11 +3,11 @@
 namespace App\Console\Commands;
 
 use App\Models\Birthday;
-use App\Models\BirthdayNotification;
 use Illuminate\Console\Command;
 use App\Services\Telegram;
+use App\Models\Notification;
 
-class Birthdays extends Command
+class BirthdaysCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -44,8 +44,9 @@ class Birthdays extends Command
         $messagePatternAfter = "Завтра день рождения у *{text}*!\nНе забудь завтра поздравить его!";
 
         foreach ($birthdays as $birthday) {
-            $notification = new BirthdayNotification();
-            $notification->birthday_id = $birthday->id;
+            $notification = new Notification();
+            $notification->type = Birthday::TYPE;
+            $notification->event_id = $birthday->id;
             $notification->result = $telegram->sendMessage(preg_replace('/{text}/', $birthday->title, now()->format('m-d') == preg_replace('/^[0-9]{4}\-/', '', $birthday->date) ? $messagePatternNow : $messagePatternAfter));
             $notification->save();
         }

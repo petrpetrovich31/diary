@@ -9,4 +9,8 @@
         <i class="la la-birthday-cake nav-icon"></i>
         <span>Дни рождения</span>
     </a>
+    <a class="nav-link" href="{{ backpack_url('diary') }}">
+        <i class="la la-calendar-check-o nav-icon"></i>
+        <span>Ежедневник</span>
+    </a>
 </li>
