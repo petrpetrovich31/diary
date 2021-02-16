@@ -35,8 +35,8 @@ class BirthdaysCommand extends Command
                     ->whereMonth('date', now()->month);
             })
             ->orWhere(function ($query) {
-                $query->whereDay('date', now()->subDay()->day)
-                    ->whereMonth('date', now()->subDay()->month);
+                $query->whereDay('date', now()->addDay()->day)
+                    ->whereMonth('date', now()->addDay()->month);
             })
             ->get();
         $telegram = new Telegram(config('services.telegram.bot-birthdays.token'), config('services.telegram.bot-birthdays.chat'));
