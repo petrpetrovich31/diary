@@ -20,6 +20,11 @@ class City extends Model
         'location'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     protected $appends = ['main_image'];
 
     /**
