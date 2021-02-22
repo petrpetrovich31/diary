@@ -12,5 +12,7 @@ Route::group([
 ], function () {
     Route::crud('birthdays', 'BirthdaysCrudController');
     Route::crud('diary', 'DiaryCrudController');
+    Route::crud('city', 'CityCrudController');
+    Route::crud('city-image', 'CityImageCrudController');
 });
 

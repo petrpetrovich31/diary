@@ -13,4 +13,11 @@
         <i class="la la-calendar-check-o nav-icon"></i>
         <span>Ежедневник</span>
     </a>
+    <a class="nav-link" href="{{ backpack_url('city') }}">
+        <i class="la la-university nav-icon"></i>
+        <span>Города</span>
+    </a><a class="nav-link" href="{{ backpack_url('city-image') }}">
+        <i class="la la-picture-o nav-icon"></i>
+        <span>Фотографии городов</span>
+    </a>
 </li>
