@@ -17,6 +17,9 @@ class CreatePlacesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description')->nullable();
+            $table->integer('day')->nullable();
+            $table->integer('month')->nullable();
+            $table->integer('year')->nullable();
             $table->string('location')->nullable();
             $table->integer('rating')->default(0);
             $table->text('comment')->nullable();

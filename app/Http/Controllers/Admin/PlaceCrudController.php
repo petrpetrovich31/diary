@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\City\City;
-use App\Models\City\CityImage;
 use App\Traits\Dates;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
-class CityCrudController extends CrudController
+class PlaceCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
@@ -16,15 +14,12 @@ class CityCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use Dates;
 
-    private $days = [];
-    private $months = [];
-    private $years = [];
 
     public function setup()
     {
-        $this->crud->setModel("App\Models\City\City");
-        $this->crud->setRoute("admin/city");
-        $this->crud->setEntityNameStrings('Город', 'Города');
+        $this->crud->setModel("App\Models\Place\Place");
+        $this->crud->setRoute("admin/place");
+        $this->crud->setEntityNameStrings('Место', 'Места');
         $this->setFilters();
         $this->setDates();
     }
@@ -114,4 +109,6 @@ class CityCrudController extends CrudController
                 $this->crud->addClause('where', 'name', 'LIKE', "%$value%");
             });
     }
+
+
 }

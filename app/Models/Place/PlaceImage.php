@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\City;
+namespace App\Models\Place;
 
 use App\Traits\UploadImage;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
@@ -8,24 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class CityImage
- * @package App\Models\City
- * @property integer $city_id
+ * Class PlaceImage
+ * @package App\Models\Place
+ * @property integer $place_id
  * @property string $src
  */
-class CityImage extends Model
+class PlaceImage extends Model
 {
     use CrudTrait;
     use UploadImage;
 
     private $uploadAttributeName = "src";
     private $uploadDisk = 'upload';
-    private $uploadDestinationPath = "city_images";
+    private $uploadDestinationPath = "place_images";
 
-    protected $table = 'cities_images';
+    protected $table = 'places_images';
     protected $fillable = [
-        'city_id',
-        'src'
+        'place_id',
+        'src',
     ];
 
     public $timestamps = false;
@@ -33,8 +33,8 @@ class CityImage extends Model
     /**
      * @return BelongsTo
      */
-    public function city(): BelongsTo
+    public function place(): BelongsTo
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(Place::class);
     }
 }

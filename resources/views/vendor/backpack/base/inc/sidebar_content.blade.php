@@ -20,4 +20,12 @@
         <i class="la la-picture-o nav-icon"></i>
         <span>Фотографии городов</span>
     </a>
+    <a class="nav-link" href="{{ backpack_url('place') }}">
+        <i class="la la-home nav-icon"></i>
+        <span>Места</span>
+    </a>
+    <a class="nav-link" href="{{ backpack_url('place-image') }}">
+        <i class="la la-picture-o nav-icon"></i>
+        <span>Фотографии мест</span>
+    </a>
 </li>

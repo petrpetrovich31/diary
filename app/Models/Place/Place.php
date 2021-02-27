@@ -1,28 +1,29 @@
 <?php
 
-namespace App\Models\City;
+namespace App\Models\Place;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Class City
- * @package App\Models\City
+ * Class Place
+ * @package App\Models\Place
  * @property string $name
  * @property string $description
  * @property integer $day
  * @property integer $month
  * @property integer $year
  * @property string $location
+ * @property integer $rating
  * @property string $comment
  * @property boolean $active
  */
-class City extends Model
+class Place extends Model
 {
     use CrudTrait;
 
-    protected $table = 'cities';
+    protected $table = 'places';
     protected $fillable = [
         'name',
         'description',
@@ -30,6 +31,7 @@ class City extends Model
         'month',
         'year',
         'location',
+        'rating',
         'comment',
         'active',
     ];
@@ -46,7 +48,7 @@ class City extends Model
      */
     public function images(): HasMany
     {
-        return $this->hasMany(CityImage::class);
+        return $this->hasMany(PlaceImage::class);
     }
 
     public function getMainImageAttribute()

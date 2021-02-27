@@ -14,5 +14,7 @@ Route::group([
     Route::crud('diary', 'DiaryCrudController');
     Route::crud('city', 'CityCrudController');
     Route::crud('city-image', 'CityImageCrudController');
+    Route::crud('place', 'PlaceCrudController');
+    Route::crud('place-image', 'PlaceImageCrudController');
 });
 
