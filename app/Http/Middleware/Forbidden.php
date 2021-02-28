@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Models\Log;
 
 class Forbidden
 {
@@ -13,6 +14,8 @@ class Forbidden
      */
     public function handle($request, Closure $next)
     {
+        Log::checkUser();
+
         return abort(403);
     }
 }
