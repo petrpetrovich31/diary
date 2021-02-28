@@ -19,4 +19,17 @@ class PlaceController extends Controller
 
         return PlaceResource::collection($places->get());
     }
+
+    /** Get place
+     * @param int $id
+     * @return PlaceResource
+     */
+    public function showPlace(int $id)
+    {
+        $place = Place::findOrFail($id);
+
+        return new PlaceResource(array_merge($place->toArray(),
+                ['images' => $place->imagesToArray()])
+        );
+    }
 }

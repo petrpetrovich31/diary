@@ -19,4 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('cities', [\App\Http\Controllers\CityController::class, 'getCities']);
+Route::get('cities/{id}', [\App\Http\Controllers\CityController::class, 'showCity']);
 Route::get('places', [\App\Http\Controllers\PlaceController::class, 'getPlaces']);
+Route::get('places/{id}', [\App\Http\Controllers\PlaceController::class, 'showPlace']);

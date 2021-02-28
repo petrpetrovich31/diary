@@ -2,6 +2,7 @@
 
 namespace App\Models\Place;
 
+use App\Traits\ImageGetter;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -22,6 +23,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Place extends Model
 {
     use CrudTrait;
+    use ImageGetter;
 
     protected $table = 'places';
     protected $fillable = [
@@ -49,10 +51,5 @@ class Place extends Model
     public function images(): HasMany
     {
         return $this->hasMany(PlaceImage::class);
-    }
-
-    public function getMainImageAttribute()
-    {
-        return optional($this->images()->first())->src;
     }
 }
