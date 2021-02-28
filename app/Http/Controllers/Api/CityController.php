@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\CityResource;
 use App\Models\City\City;
 use App\Traits\Filter;
+use App\Http\Controllers\Controller;
 
 class CityController extends Controller
 {

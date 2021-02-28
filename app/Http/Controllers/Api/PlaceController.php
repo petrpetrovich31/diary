@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\PlaceResource;
 use App\Models\Place\Place;
 use App\Traits\Filter;
+use App\Http\Controllers\Controller;
 
 class PlaceController extends Controller
 {

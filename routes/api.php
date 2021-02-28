@@ -3,22 +3,20 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('cities', [\App\Http\Controllers\CityController::class, 'getCities']);
-Route::get('cities/{id}', [\App\Http\Controllers\CityController::class, 'showCity']);
-Route::get('places', [\App\Http\Controllers\PlaceController::class, 'getPlaces']);
-Route::get('places/{id}', [\App\Http\Controllers\PlaceController::class, 'showPlace']);
+Route::group([
+    'prefix'     => 'cities',
+], function () {
+    Route::get('/', [\App\Http\Controllers\Api\CityController::class, 'getCities']);
+    Route::get('/{id}', [\App\Http\Controllers\Api\CityController::class, 'showCity']);
+});
+Route::group([
+    'prefix'     => 'places',
+], function () {
+    Route::get('/', [\App\Http\Controllers\Api\PlaceController::class, 'getPlaces']);
+    Route::get('/{id}', [\App\Http\Controllers\Api\PlaceController::class, 'showPlace']);
+});
+
