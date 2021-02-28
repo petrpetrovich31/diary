@@ -52,4 +52,13 @@ class Place extends Model
     {
         return $this->hasMany(PlaceImage::class);
     }
+
+    /** Active scope
+     * @param $query
+     * @return mixed
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('active', 1);
+    }
 }

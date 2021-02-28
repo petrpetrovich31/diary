@@ -50,4 +50,13 @@ class City extends Model
     {
         return $this->hasMany(CityImage::class);
     }
+
+    /** Active scope
+     * @param $query
+     * @return mixed
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('active', 1);
+    }
 }
