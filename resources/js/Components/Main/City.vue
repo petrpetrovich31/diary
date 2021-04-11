@@ -4,7 +4,7 @@
         <swiper ref="swiper" :options="swiperOptions" class="container">
             <div class="swiper-button-prev" slot="button-prev" @click="prev()"></div>
             <div class="swiper-button-next" slot="button-next" @click="next()"></div>
-            <swiper-slide v-for="(city, index) in cities" :key="index" class="col-md-4 city-item">
+            <swiper-slide v-for="(city, index) in cities" :key="index" class="col-sm-10 col-md-4 city-item">
                 <h2 class="text-center">{{ city.name }}</h2>
                 <img :src="city.main_image">
                 <p class="w-100-p text-right">{{ city.year }} г.</p>
@@ -29,7 +29,7 @@ export default Vue.extend({
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev'
             },
-            slidesPerView: 3,
+            slidesPerView: document.documentElement.clientWidth <= 640 ? 1 : 3,
             speed: 2000,
             loop: true,
             effect: 'coverflow',
