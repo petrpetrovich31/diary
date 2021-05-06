@@ -18,7 +18,7 @@ class CityController extends Controller
     {
         $cities = $this->prepareFilter(City::query());
 
-        return CityResource::collection($cities->get());
+        return CityResource::collection($cities->has('images', '>', 0)->inRandomOrder()->get());
     }
 
     /** Get city
