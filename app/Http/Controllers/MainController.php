@@ -8,7 +8,7 @@ class MainController extends Controller
 {
     public function index()
     {
-        $cities = City::limit(6)->get();
+        $cities = City::has('images', '>', 0)->inRandomOrder()->limit(6)->get();
 
         return view('main', ['cities' => $cities]);
     }
