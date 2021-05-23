@@ -24,12 +24,3 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      - name: Run migrations
-        run: php artisan migrate
-
-      - name: Clear caches
-        run: php artisan cache:clear
-        
-      - name: Clear config
-        run: php artisan config:clear
