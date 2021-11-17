@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use App\Services\Telegram;
-use App\Models\Notification;
 use App\Models\Diary;
+use App\Models\Notification;
+use Illuminate\Console\Command;
+use PetrPetrovich\Telegram\Services\TelegramService;
 
 class DiaryCommand extends Command
 {
@@ -38,7 +38,7 @@ class DiaryCommand extends Command
             })
             ->get();
 
-        $telegram = new Telegram(config('services.telegram.bot-birthdays.token'), config('services.telegram.bot-birthdays.chat'));
+        $telegram = new TelegramService(config('services.telegram.bot-birthdays.token'), config('services.telegram.bot-birthdays.chat'));
         $messagePatternNow = "Сегодня *{text}*!\nНадо сделать это!";
         $messagePatternAfter = "Завтра *{text}*!\nНе забудь!";
 

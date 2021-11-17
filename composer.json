@@ -7,6 +7,12 @@
         "laravel"
     ],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:petrpetrovich31/telegram-service.git"
+        }
+    ],
     "require": {
         "php": "^7.2.5|^8.0",
         "ext-json": "*",
@@ -16,7 +22,8 @@
         "guzzlehttp/guzzle": "^6.3.1|^7.0.1",
         "intervention/image": "^2.5",
         "laravel/framework": "^7.29",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "petr-petrovich/telegram-service": "dev-master"
     },
     "require-dev": {
         "backpack/generators": "^3.1",

@@ -3,9 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Models\Birthday;
-use Illuminate\Console\Command;
-use App\Services\Telegram;
 use App\Models\Notification;
+use Illuminate\Console\Command;
+use PetrPetrovich\Telegram\Services\TelegramService;
 
 class BirthdaysCommand extends Command
 {
@@ -39,7 +39,8 @@ class BirthdaysCommand extends Command
                     ->whereMonth('date', now()->addDay()->month);
             })
             ->get();
-        $telegram = new Telegram(config('services.telegram.bot-birthdays.token'), config('services.telegram.bot-birthdays.chat'));
+
+        $telegram = new TelegramService(config('services.telegram.bot-birthdays.token'), config('services.telegram.bot-birthdays.chat'));
         $messagePatternNow = "Сегодня день рождения у *{text}*!\nМожно было бы и поздравить его!";
         $messagePatternAfter = "Завтра день рождения у *{text}*!\nНе забудь завтра поздравить его!";
 

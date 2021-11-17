@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "69b62553c0b56013c18e9858d51043c0",
+    "content-hash": "266f2849a98acc7aa69d278197907932",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2114,6 +2114,46 @@
                 "serialize"
             ],
             "time": "2020-11-07T02:01:34+00:00"
+        },
+        {
+            "name": "petr-petrovich/telegram-service",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/petrpetrovich31/telegram-service.git",
+                "reference": "39f92835e9e4e07c26d51f8560dc8c7a3282f185"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/petrpetrovich31/telegram-service/zipball/39f92835e9e4e07c26d51f8560dc8c7a3282f185",
+                "reference": "39f92835e9e4e07c26d51f8560dc8c7a3282f185",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "PetrPetrovich\\Telegram\\TelegramServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PetrPetrovich\\Telegram\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Petr Petrovich",
+                    "email": "peter-bel13@yandex.ru"
+                }
+            ],
+            "description": "Package for send messages in telegram",
+            "support": {
+                "source": "https://github.com/petrpetrovich31/telegram-service/tree/master",
+                "issues": "https://github.com/petrpetrovich31/telegram-service/issues"
+            },
+            "time": "2021-11-17T14:35:59+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -7598,7 +7638,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "petr-petrovich/telegram-service": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
