@@ -6,15 +6,15 @@ use App\Http\Resources\CityResource;
 use App\Models\City\City;
 use App\Traits\Filter;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CityController extends Controller
 {
     use Filter;
 
     /** Get cities
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getCities()
+    public function getCities(): AnonymousResourceCollection
     {
         $cities = $this->prepareFilter(City::query());
 
@@ -22,10 +22,8 @@ class CityController extends Controller
     }
 
     /** Get city
-     * @param int $id
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function showCity(int $id)
+    public function showCity(int $id): CityResource
     {
         $city = City::findOrFail($id);
 

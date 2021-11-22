@@ -43,18 +43,11 @@ class City extends Model
 
     protected $appends = ['main_image'];
 
-    /**
-     * @return HasMany
-     */
     public function images(): HasMany
     {
         return $this->hasMany(CityImage::class);
     }
 
-    /** Active scope
-     * @param $query
-     * @return mixed
-     */
     public function scopeActive($query)
     {
         return $query->where('active', 1);

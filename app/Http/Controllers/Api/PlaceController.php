@@ -6,26 +6,20 @@ use App\Http\Resources\PlaceResource;
 use App\Models\Place\Place;
 use App\Traits\Filter;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PlaceController extends Controller
 {
     use Filter;
 
-    /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     */
-    public function getPlaces()
+    public function getPlaces(): AnonymousResourceCollection
     {
         $places = $this->prepareFilter(Place::query());
 
         return PlaceResource::collection($places->get());
     }
 
-    /** Get place
-     * @param int $id
-     * @return PlaceResource
-     */
-    public function showPlace(int $id)
+    public function showPlace(int $id): PlaceResource
     {
         $place = Place::findOrFail($id);
 
