@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api as ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -10,13 +11,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group([
     'prefix'     => 'cities',
 ], function () {
-    Route::get('/', [\App\Http\Controllers\Api\CityController::class, 'getCities']);
-    Route::get('/{id}', [\App\Http\Controllers\Api\CityController::class, 'showCity']);
+    Route::get('/',     [ApiController\CityController::class, 'getCities']);
+    Route::get('/{id}', [ApiController\CityController::class, 'showCity']);
 });
 Route::group([
     'prefix'     => 'places',
 ], function () {
-    Route::get('/', [\App\Http\Controllers\Api\PlaceController::class, 'getPlaces']);
-    Route::get('/{id}', [\App\Http\Controllers\Api\PlaceController::class, 'showPlace']);
+    Route::get('/',     [ApiController\PlaceController::class, 'getPlaces']);
+    Route::get('/{id}', [ApiController\PlaceController::class, 'showPlace']);
 });
 
