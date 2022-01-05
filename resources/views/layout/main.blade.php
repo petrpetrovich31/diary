@@ -12,9 +12,9 @@
     </head>
     <body>
         <div class="page" id="app">
-            @include('layout.header')
+            <main-header></main-header>
             <div class="content">
-                @yield('content')
+                <router-view></router-view>
             </div>
             @include('layout.footer')
         </div>

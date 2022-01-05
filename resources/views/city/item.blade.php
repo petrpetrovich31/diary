@@ -2,6 +2,6 @@
 
 @section('content')
     <section>
-        <city-item></city-item>
+        <city-item v-bind:id="{{ $id }}"></city-item>
     </section>
 @endsection

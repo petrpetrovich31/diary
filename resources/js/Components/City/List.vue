@@ -1,5 +1,5 @@
 <template>
-    <div class="wrap">
+    <section class="container main-section">
         <div class="title-page">
             <h2>Посещённые города</h2>
         </div>
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script lang="ts">
