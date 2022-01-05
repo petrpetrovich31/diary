@@ -25,6 +25,7 @@
     "dependencies": {
         "swiper": "5",
         "vue-awesome-countdown": "^1.1.4",
-        "vue-awesome-swiper": "^4.1.1"
+        "vue-awesome-swiper": "^4.1.1",
+        "vue-router": "^3.5.3"
     }
 }
