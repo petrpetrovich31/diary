@@ -25,6 +25,7 @@ class PlaceTest extends TestCase
     public function test_api_place(): void
     {
         $place = Place::factory()->create();
+
         $response = $this->get('/api/places/' . $place->id);
         $response->assertStatus(200);
 

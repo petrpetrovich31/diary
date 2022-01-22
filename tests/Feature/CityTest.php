@@ -15,7 +15,6 @@ class CityTest extends TestCase
     public function test_api_cities(): void
     {
         $response = $this->get('/api/cities');
-
         $response->assertStatus(200);
     }
 
@@ -25,9 +24,10 @@ class CityTest extends TestCase
     public function test_api_city(): void
     {
         $city = City::factory()->create();
-        $response = $this->get('/api/cities/' . $city->id);
 
+        $response = $this->get('/api/cities/' . $city->id);
         $response->assertStatus(200);
+
         $response = $this->get('/api/cities/'. ++$city->id);
         $response->assertStatus(404);
     }
