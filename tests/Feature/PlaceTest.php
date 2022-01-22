@@ -26,7 +26,9 @@ class PlaceTest extends TestCase
     {
         $place = Place::factory()->create();
         $response = $this->get('/api/places/' . $place->id);
-
         $response->assertStatus(200);
+
+        $response = $this->get('/api/places/' . ++$place->id);
+        $response->assertStatus(404);
     }
 }

@@ -28,5 +28,7 @@ class CityTest extends TestCase
         $response = $this->get('/api/cities/' . $city->id);
 
         $response->assertStatus(200);
+        $response = $this->get('/api/cities/'. ++$city->id);
+        $response->assertStatus(404);
     }
 }
