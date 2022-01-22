@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Place\Place;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -23,7 +24,8 @@ class PlaceTest extends TestCase
      */
     public function test_api_place(): void
     {
-        $response = $this->get('/api/places/1');
+        $place = Place::factory()->create();
+        $response = $this->get('/api/places/' . $place->id);
 
         $response->assertStatus(200);
     }

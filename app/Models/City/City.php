@@ -4,12 +4,14 @@ namespace App\Models\City;
 
 use App\Traits\ImageGetter;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class City
  * @package App\Models\City
+ * @property int $id
  * @property string $name
  * @property string $description
  * @property integer $day
@@ -23,6 +25,7 @@ class City extends Model
 {
     use CrudTrait;
     use ImageGetter;
+    use HasFactory;
 
     protected $table = 'cities';
     protected $fillable = [

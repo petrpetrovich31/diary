@@ -2,10 +2,13 @@
 
 namespace Tests\Feature;
 
+use App\Models\City\City;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class CityTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * Test api method of cities
      */
@@ -21,7 +24,8 @@ class CityTest extends TestCase
      */
     public function test_api_city(): void
     {
-        $response = $this->get('/api/cities/1');
+        $city = City::factory()->create();
+        $response = $this->get('/api/cities/' . $city->id);
 
         $response->assertStatus(200);
     }
