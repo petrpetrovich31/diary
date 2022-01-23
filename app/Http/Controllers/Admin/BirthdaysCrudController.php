@@ -34,8 +34,6 @@ class BirthdaysCrudController extends CrudController
 
     public function setupCreateOperation()
     {
-        //$this->crud->setValidation(TagCrudRequest::class);
-
         $this->crud->addField([
             'name' => 'title',
             'type' => 'text',
