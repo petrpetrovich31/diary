@@ -28,4 +28,12 @@
         <i class="la la-picture-o nav-icon"></i>
         <span>Фотографии мест</span>
     </a>
+    <a class="nav-link" href="{{ backpack_url('beer/beer') }}">
+        <i class="la la-beer nav-icon"></i>
+        <span>Пиво</span>
+    </a>
+    <a class="nav-link" href="{{ backpack_url('beer/action') }}">
+        <i class="la la-check nav-icon"></i>
+        <span>Действия</span>
+    </a>
 </li>

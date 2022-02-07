@@ -16,5 +16,13 @@ Route::group([
     Route::crud('city-image', 'CityImageCrudController');
     Route::crud('place', 'PlaceCrudController');
     Route::crud('place-image', 'PlaceImageCrudController');
+
+    Route::group([
+        'prefix' => 'beer',
+        'namespace' => 'Beer',
+    ], function () {
+        Route::crud('beer', 'BeerCrudController');
+        Route::crud('action', 'ActionCrudController');
+    });
 });
 
