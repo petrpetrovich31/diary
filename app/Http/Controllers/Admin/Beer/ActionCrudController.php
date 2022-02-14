@@ -46,6 +46,7 @@ class ActionCrudController extends CrudController
         $this->crud->addColumn([
             'name'    => 'day',
             'label'   => 'Дата',
+            'type'    => 'date',
         ]);
     }
 
