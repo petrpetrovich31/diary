@@ -10,10 +10,10 @@
                     </div>
                     <div class="col-lg-6 col-9 display-inline">
                         <ul class="menu">
-<!--                            <li>
+                            <li>
                                 <router-link to="/city" v-bind:class="{active: isCitiesRoute}" >Города</router-link>
                             </li>
-                            <li><a href="#">Заведения</a></li>-->
+<!--                            <li><a href="#">Заведения</a></li>-->
                         </ul>
                     </div>
                 </div>
