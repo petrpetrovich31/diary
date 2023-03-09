@@ -6,6 +6,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Console\Commands\BirthdaysCommand;
 use App\Console\Commands\DiaryCommand;
+use App\Console\Commands\OviScoresCommand;
 
 class Kernel extends ConsoleKernel
 {
@@ -17,6 +18,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         BirthdaysCommand::class,
         DiaryCommand::class,
+        OviScoresCommand::class,
     ];
 
     /**
@@ -27,6 +29,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('ovi:scores')
+            ->dailyAt('09:00');
         $schedule->command('birthdays:send')
             ->dailyAt('10:00');
         $schedule->command('diary:send')
