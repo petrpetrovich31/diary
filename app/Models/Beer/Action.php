@@ -2,14 +2,11 @@
 
 namespace App\Models\Beer;
 
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Action extends Model
 {
-    use CrudTrait;
-
     protected $table = 'beer_actions';
 
     protected $fillable = [

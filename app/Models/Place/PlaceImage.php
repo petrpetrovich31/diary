@@ -3,7 +3,6 @@
 namespace App\Models\Place;
 
 use App\Traits\UploadImage;
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -15,7 +14,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class PlaceImage extends Model
 {
-    use CrudTrait;
     use UploadImage;
 
     private $uploadAttributeName = "src";
