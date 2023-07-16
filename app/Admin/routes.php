@@ -13,7 +13,7 @@ Route::group([
     'as'            => config('admin.route.prefix') . '.',
 ], function (Router $router) {
 
-    $router->get('/', 'HomeController@index')->name('home');
+    $router->get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
     $router->resource('cities', Controllers\CityController::class);
 });
