@@ -2,22 +2,22 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\City\City;
+use App\Models\Diary;
 use App\Traits\Dates;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 
-class CityController extends AdminController
+class DiaryController extends AdminController
 {
     use Dates;
 
-    protected $title = 'Города';
+    protected $title = 'Ежедневник';
 
     protected function grid(): Grid
     {
-        $grid = new Grid(new City());
+        $grid = new Grid(new Diary());
 
         $grid->model()->orderBy('id', 'desc');
         $grid->disableExport();
@@ -26,9 +26,10 @@ class CityController extends AdminController
         $grid->disableRowSelector();
 
         $grid->column('id', __('fields.id'))->sortable();
-        $grid->column('name', __('fields.name'));
+        $grid->column('title', __('fields.title'));
+        $grid->column('day', __('fields.day'));
+        $grid->column('month', __('fields.month'));
         $grid->column('year', __('fields.year'));
-        $grid->column('active', __('fields.active'));
         $grid->column('created_at', __('fields.created_at'));
 
         return $grid;
@@ -36,18 +37,14 @@ class CityController extends AdminController
 
     protected function detail($id): Show
     {
-        $city = City::findOrFail($id);
-        $show = new Show($city);
+        $diary = Diary::findOrFail($id);
+        $show = new Show($diary);
 
         $show->field('id', __('fields.id'));
-        $show->field('name', __('fields.name'));
-        $show->field('description', __('fields.description'));
+        $show->field('title', __('fields.title'));
         $show->field('day', __('fields.day'));
         $show->field('month', __('fields.month'));
         $show->field('year', __('fields.year'));
-        $show->field('location', __('fields.location'));
-        $show->field('comment', __('fields.comment'));
-        $show->field('active', __('fields.active'));
         $show->field('created_at', __('fields.created_at'));
         $show->field('updated_at', __('fields.updated_at'));
 
@@ -56,24 +53,20 @@ class CityController extends AdminController
 
     protected function form(): Form
     {
-        $form = new Form(new City);
+        $form = new Form(new Diary);
 
         $form->disableViewCheck();
         $form->disableEditingCheck();
         $form->disableCreatingCheck();
 
         $form->id('id', __('fields.id'));
-        $form->text('name', __('fields.name'));
-        $form->textarea('description', __('fields.description'));
+        $form->text('title', __('fields.title'));
         $form->select('day', __('fields.day'))
             ->options($this->getDays());
         $form->select('month', __('fields.month'))
             ->options($this->getMonths());
         $form->select('year', __('fields.year'))
             ->options($this->getYears());
-        $form->text('location', __('fields.location'));
-        $form->textarea('comment', __('fields.comment'));
-        $form->switch('active', __('fields.active'));
         $form->display('created_at', __('fields.created_at'));
         $form->display('updated_at', __('fields.updated_at'));
 
