@@ -14,11 +14,18 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Birthday extends Model
 {
+    public const TYPE = 'birthday';
 
     protected $table = 'birthdays';
-    protected $fillable = ['title', 'date'];
-
-    public const TYPE = 'birthday';
+    protected $fillable = [
+        'title',
+        'date',
+    ];
+    protected $casts = [
+        'date'       => 'date:Y-m-d',
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
 
     /** Get the notifications for birthday.
      * @return HasMany
@@ -27,5 +34,4 @@ class Birthday extends Model
     {
         return $this->hasMany(Notification::class, 'event_id', 'id');
     }
-
 }
