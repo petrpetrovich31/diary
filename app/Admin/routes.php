@@ -15,5 +15,9 @@ Route::group([
 
     $router->get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
+    $router->resource('beer', Controllers\BeerController::class);
+    $router->resource('birthdays', Controllers\BirthdayController::class);
     $router->resource('cities', Controllers\CityController::class);
+    $router->resource('diary', Controllers\DiaryController::class);
+
 });

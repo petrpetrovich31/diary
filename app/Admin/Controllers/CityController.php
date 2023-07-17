@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Enums\FoldersEnum;
 use App\Models\City\City;
 use App\Traits\Dates;
 use Encore\Admin\Controllers\AdminController;
@@ -48,6 +49,12 @@ class CityController extends AdminController
         $show->field('location', __('fields.location'));
         $show->field('comment', __('fields.comment'));
         $show->field('active', __('fields.active'));
+
+        $show->images('Изображения', function ($images) {
+            $images->id();
+            $images->src()->image();
+        });
+
         $show->field('created_at', __('fields.created_at'));
         $show->field('updated_at', __('fields.updated_at'));
 
@@ -74,6 +81,14 @@ class CityController extends AdminController
         $form->text('location', __('fields.location'));
         $form->textarea('comment', __('fields.comment'));
         $form->switch('active', __('fields.active'));
+
+        $form->hasMany('images', 'Изображения', function (Form\NestedForm $form) {
+            $form->image('src', __('fields.image'))
+                ->disk('admin')
+                ->move(FoldersEnum::City->value)
+                ->uniqueName();
+        });
+
         $form->display('created_at', __('fields.created_at'));
         $form->display('updated_at', __('fields.updated_at'));
 

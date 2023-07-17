@@ -2,7 +2,6 @@
 
 namespace App\Models\City;
 
-use App\Traits\UploadImage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -14,16 +13,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class CityImage extends Model
 {
-    use UploadImage;
-
-    private $uploadAttributeName = "src";
-    private $uploadDisk = 'upload';
-    private $uploadDestinationPath = "city_images";
-
     protected $table = 'cities_images';
     protected $fillable = [
         'city_id',
-        'src'
+        'src',
     ];
 
     public $timestamps = false;
@@ -33,6 +26,6 @@ class CityImage extends Model
      */
     public function city(): BelongsTo
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class, 'city_id', 'id');
     }
 }

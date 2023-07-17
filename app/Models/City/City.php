@@ -47,11 +47,13 @@ class City extends Model
         'updated_at',
     ];
 
-    protected $appends = ['main_image'];
+    protected $appends = [
+        'main_image',
+    ];
 
     public function images(): HasMany
     {
-        return $this->hasMany(CityImage::class);
+        return $this->hasMany(CityImage::class, 'city_id', 'id');
     }
 
     public function scopeActive($query)
