@@ -24,8 +24,6 @@ class CityController extends AdminController
 
         $grid->column('id', __('fields.id'))->sortable();
         $grid->column('name', __('fields.name'));
-        $grid->column('day', __('fields.day'));
-        $grid->column('month', __('fields.month'));
         $grid->column('year', __('fields.year'));
         $grid->column('active', __('fields.active'));
         $grid->column('created_at', __('fields.created_at'));
@@ -35,8 +33,8 @@ class CityController extends AdminController
 
     protected function detail($id): Show
     {
-        $category = City::findOrFail($id);
-        $show = new Show($category);
+        $city = City::findOrFail($id);
+        $show = new Show($city);
 
         $show->field('id', __('fields.id'));
         $show->field('name', __('fields.name'));
