@@ -48,7 +48,7 @@ class BirthdaysCommand extends Command
             $notification = new Notification();
             $notification->type = Birthday::TYPE;
             $notification->event_id = $birthday->id;
-            $notification->result = $telegram->sendMessage(preg_replace('/{text}/', $birthday->title, now()->format('m-d') == preg_replace('/^[0-9]{4}\-/', '', $birthday->date) ? $messagePatternNow : $messagePatternAfter));
+            $notification->result = $telegram->sendMessage(preg_replace('/{text}/', $birthday->title, now()->format('m-d') == preg_replace('/^[0-9]{4}\-/', '', $birthday->date->format('m-d')) ? $messagePatternNow : $messagePatternAfter));
             $notification->save();
         }
 
