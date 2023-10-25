@@ -29,7 +29,9 @@ class OviScoresCommand extends Command
         ])->body();
 
         $text = mb_convert_encoding(json_decode($response)->parse->text->$attribute, 'HTML-ENTITIES', 'utf-8');
+        libxml_use_internal_errors(true);
         $document->loadHTML($text);
+        libxml_clear_errors();
         $table = $document->getElementsByTagName('table')->item(0);
 
         for ($i = 2; $i <= 2; $i++) {
@@ -40,7 +42,8 @@ class OviScoresCommand extends Command
             if ($name === "Александр Овечкин\n" && $score !== $savedScore) {
                 file_put_contents($this->filePath, $score);
                 $service = new TelegramService(config('services.telegram.bot-birthdays.token'), config('services.telegram.bot-birthdays.chat'));
-                $service->sendMessage("Овечкин - *{$score}* шайб!");
+                $diff = 894 - $score;
+                $service->sendMessage("Овечкин - *{$score}* шайб! Осталось - {$diff}!");
             }
         }
     }
