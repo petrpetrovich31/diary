@@ -37,13 +37,14 @@ class OviScoresCommand extends Command
         for ($i = 2; $i <= 2; $i++) {
             $tr = $table->getElementsByTagName('tr')->item($i);
             $name = $tr->getElementsByTagName('td')->item(1)->textContent;
-            $score = (int) $tr->getElementsByTagName('td')->item(3)->textContent;
+            $score = (int) $tr->getElementsByTagName('td')->item(2)->textContent;
 
-            if ($name === "Александр Овечкин\n" && $score !== $savedScore) {
+            if (preg_match('#Овечкин#', $name) && $score !== $savedScore) {
                 file_put_contents($this->filePath, $score);
                 $service = new TelegramService(config('services.telegram.bot-birthdays.token'), config('services.telegram.bot-birthdays.chat'));
                 $diff = 894 - $score;
                 $service->sendMessage("Овечкин - *{$score}* шайб! Осталось - {$diff}!");
+                break;
             }
         }
     }
