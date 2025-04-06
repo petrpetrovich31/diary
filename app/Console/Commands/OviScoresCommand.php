@@ -34,7 +34,7 @@ class OviScoresCommand extends Command
         libxml_clear_errors();
         $table = $document->getElementsByTagName('table')->item(0);
 
-        for ($i = 2; $i <= 2; $i++) {
+        for ($i = 1; $i <= 1; $i++) {
             $tr = $table->getElementsByTagName('tr')->item($i);
             $name = $tr->getElementsByTagName('td')->item(1)->textContent;
             $score = (int) $tr->getElementsByTagName('td')->item(2)->textContent;
@@ -42,8 +42,9 @@ class OviScoresCommand extends Command
             if (preg_match('#Овечкин#', $name) && $score !== $savedScore) {
                 file_put_contents($this->filePath, $score);
                 $service = new TelegramService(config('services.telegram.bot-birthdays.token'), config('services.telegram.bot-birthdays.chat'));
-                $diff = 894 - $score;
-                $service->sendMessage("Овечкин - *{$score}* шайб! Осталось - {$diff}!");
+                $diff = $score - 894;
+                dump("Овечкин - *{$score}* шайб! Рекорд побит на {$diff}!");
+                $service->sendMessage("Овечкин - *{$score}* шайб! Рекорд побит на {$diff}!");
                 break;
             }
         }
