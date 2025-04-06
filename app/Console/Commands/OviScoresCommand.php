@@ -43,7 +43,6 @@ class OviScoresCommand extends Command
                 file_put_contents($this->filePath, $score);
                 $service = new TelegramService(config('services.telegram.bot-birthdays.token'), config('services.telegram.bot-birthdays.chat'));
                 $diff = $score - 894;
-                dump("Овечкин - *{$score}* шайб! Рекорд побит на {$diff}!");
                 $service->sendMessage("Овечкин - *{$score}* шайб! Рекорд побит на {$diff}!");
                 break;
             }
