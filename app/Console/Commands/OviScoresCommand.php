@@ -22,7 +22,10 @@ class OviScoresCommand extends Command
         $attribute = '*';
         $document = new \DOMDocument();
 
-        $response = Http::get($this->url, [
+        $response = Http::withHeaders([
+                'User-Agent' => 'Example Application/1.0',
+            ])
+            ->get($this->url, [
             'action' => 'parse',
             'page' => 'Список игроков НХЛ, забросивших 500 и более шайб',
             'format' => 'json',
@@ -42,8 +45,7 @@ class OviScoresCommand extends Command
             if (preg_match('#Овечкин#', $name) && $score !== $savedScore) {
                 file_put_contents($this->filePath, $score);
                 $service = new TelegramService(config('services.telegram.bot-birthdays.token'), config('services.telegram.bot-birthdays.chat'));
-                $diff = $score - 894;
-                $service->sendMessage("Овечкин - *{$score}* шайб! Рекорд побит на {$diff}!");
+                $service->sendMessage("Овечкин - *{$score}* шайб!");
                 break;
             }
         }
